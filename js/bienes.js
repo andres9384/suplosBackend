@@ -56,13 +56,17 @@ function Ciudades_Tipo(){
             let tipos = [...tipo];
            
             var $select = $("#selectCiudad");
+            var $select1 = $("#reportCiudad");
             ciudades.forEach(ciudad => {
-                $select.append("<option value='"+ciudad+"' >"+ciudad+"</option>")
+                $select.append("<option value='"+ciudad+"' >"+ciudad+"</option>");
+                $select1.append("<option value='"+ciudad+"' >"+ciudad+"</option>");
             });
 
             var $select = $("#selectTipo");
+            var $select1 = $("#reportTipo");
             tipos.forEach(tipo => {
-                $select.append("<option value='"+tipo+"' >"+tipo+"</option>")
+                $select.append("<option value='"+tipo+"' >"+tipo+"</option>");
+                $select1.append("<option value='"+tipo+"' >"+tipo+"</option>");
             });
             
         }
@@ -94,8 +98,7 @@ function BuscarBienes(){
     } 
     
     ordernarBienes(CiudadTipoSelecionado);
-
-   
+ 
 }
 function guardarBien(id){
     var datosGuardar=[];
@@ -122,4 +125,47 @@ function guardarBien(id){
         }
         
     })
+}
+
+function ReportarBienes(){
+    var ciudad = $("#reportCiudad").val();
+    var tipo = $("#reportTipo").val();
+  
+    CiudadTipoSelecionado= []
+
+    for (let index = 0; index < Datos.length; index++) {
+        
+        if(Datos[index]["Ciudad"] === ciudad && Datos[index]["Tipo"] === tipo){
+            CiudadTipoSelecionado.push(Datos[index]);
+           continue;
+            
+        }else if(Datos[index]["Ciudad"] === ciudad && tipo ===""){
+            CiudadTipoSelecionado.push(Datos[index]);
+          
+        }else if(Datos[index]["Tipo"] === tipo && ciudad ===""){
+            CiudadTipoSelecionado.push(Datos[index]);
+        }else if ( tipo=== "" && ciudad ==="") {
+            CiudadTipoSelecionado=Datos;
+        }
+        
+    } 
+    console.log(CiudadTipoSelecionado);
+    var datosEnviar = JSON.stringify(CiudadTipoSelecionado);
+    $.ajax({
+        type:"POST", 
+        // dataType: "json",
+        url:'generarExcel.php',        
+        data:{datos:datosEnviar}, 
+        success:function(datos){ 
+             
+            
+         },
+         error: function(e){
+            console.log(e);
+        }
+        
+    })
+    
+    // exportarBienes(CiudadTipoSelecionado);
+ 
 }

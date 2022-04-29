@@ -3,14 +3,11 @@
 
 function obtener_todos_registros(){
     include("conexion.php");
-    $bienes=[];
+  
     $stmp =  $mbd->prepare("SELECT * FROM bienes  ");
     $stmp->execute();
     $resultado = $stmp->fetchAll();
 
-    foreach ($resultado as $bienes) {
-        
-    }
     return $resultado;
 
 }

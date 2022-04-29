@@ -60,6 +60,7 @@ $bienes = obtener_todos_registros();
       <ul>
         <li><a href="#tabs-1">Bienes disponibles</a></li>
         <li><a href="#tabs-2">Mis bienes</a></li>
+        <li><a href="#tabs-3">Reportes</a></li>
       </ul>
       <div id="tabs-1">
         <div class="colContenido" id="divResultadosBusqueda">
@@ -103,9 +104,42 @@ $bienes = obtener_todos_registros();
           </div>
         </div>
       </div>
+
+      <div id="tabs-3">
+        <div class="colContenido" id="divResultadosBusqueda">
+          <div class="tituloContenido card" style="justify-content: center;">
+            <h5>Exportar Reportes:</h5>
+            <h4>Filtros</h4>
+            <br>
+            <form action="generarExcel.php" method="post">
+            <div class="filtroCiudad input-field">
+            <p><label for="selectCiudad">Ciudad:</label><br></p>
+            <select name="ciudad" id="reportCiudad">
+              <option value="" selected>Elige una ciudad</option>
+            </select>
+          </div>
+          <div class="filtroTipo input-field">
+            <p><label for="selecTipo">Tipo:</label></p>
+            <br>
+            <select name="tipo" id="reportTipo">
+              <option value="">Elige un tipo</option>
+            </select>
+          </div>
+         
+          <div class="botonField">
+            <input type="submit" class="btn white" value="Generar" name="enviar" id="submitButton">
+          </div>
+            </form>
+            <div class="divider"></div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 
-
+    
+    
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     
     <script type="text/javascript" src="js/ion.rangeSlider.min.js"></script>
