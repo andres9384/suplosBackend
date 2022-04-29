@@ -1,6 +1,6 @@
 <?php
 
-//funcion para traer todos los registro guardades del usuario
+//funcion para traer todos los registro guardados del usuario
 function obtener_todos_registros()
 {
     include("conexion.php");
@@ -12,7 +12,7 @@ function obtener_todos_registros()
     return $resultado;
 }
 
-//Conversion para obtenr el valos del tipo segun el numero
+//Conversion para obtener el valor del tipo segun el numero
 function conversion_tipo($tipo)
 {
 
@@ -32,7 +32,7 @@ function conversion_tipo($tipo)
     }
     return $tipo;
 }
-//Conversion para obtener el valos de la ciudad segun el numero
+//Conversion para obtener el valor de la ciudad segun el numero
 function conversion_ciudad($ciudad)
 {
 
