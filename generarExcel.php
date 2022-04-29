@@ -73,10 +73,10 @@ header('Content-Disposition: attachment; filename=nombre_archivo.xls');?>
         <tr>
             <td><?= $row["id"]?></td>
             <td><?= $row["direccion"]?></td>
-            <td><?= $row["ciudad"]?></td>
+            <td><?=$_POST["ciudad"]?></td>
             <td><?= $row["telefono"]?></td>
-            <td><?= $row["codigo_Postal"]?></td>
-            <td><?= $row["tipo"]?></td>
+            <td><?= $row["postal"]?></td>
+            <td><?= $_POST["tipo"]?></td>
             <td><?= $row["precio"]?></td>
         </tr>
         <?php endforeach?>
