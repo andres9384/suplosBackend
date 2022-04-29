@@ -3,8 +3,10 @@
 
 
 include("conexion.php");
-
-if(!empty($_POST["datos"])){  $data = json_decode($_POST["datos"],TRUE);
+// valida que hallan datos 
+if(!empty($_POST["datos"])){  
+    // convierte los datos json a array de php
+    $data = json_decode($_POST["datos"],TRUE);
    
     foreach ($data as $row) {
         $id= $row["Id"];
@@ -54,6 +56,7 @@ if(!empty($_POST["datos"])){  $data = json_decode($_POST["datos"],TRUE);
                 # code...
                 break;
         }
+        //sentencia para guardar los datos en la base de datos
         $stmt = $mbd->prepare("INSERT INTO bienes(id,telefono,postal,precio,direccion,ciudad_id,tipo_id)VALUES (:id,:telefono,:postal,:precio,:direccion,:ciudad_id,:tipo_id)");
         $stmt->bindParam(':id',$id);
         $stmt->bindParam(':direccion', $direccion);
@@ -63,6 +66,8 @@ if(!empty($_POST["datos"])){  $data = json_decode($_POST["datos"],TRUE);
         $stmt->bindParam(':postal', $postal);
         $stmt->bindParam(':tipo_id', $tipo);
         $resultado = $stmt->execute();
+        
+        // redireccionamiento al index
         header("location:index.php");
     }}
     

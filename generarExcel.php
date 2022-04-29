@@ -1,6 +1,8 @@
 <?php
 include("conexion.php");
-include("funciones.php");
+
+
+// Validamos que el usuario halla oprimido el boton enviar 
 if(!empty($_POST["enviar"])){  
    switch ($_POST["tipo"]) {
         case 'Apartamento':
@@ -41,14 +43,14 @@ if(!empty($_POST["enviar"])){
             # code...
             break;
     }
-
+// sentencias para buscar los datos segun el filtro que el usuario decidio
     $stmp = $mbd->prepare("SELECT * FROM bienes WHERE ciudad_id=".$ciudad." AND tipo_id=".$tipo);
     $stmp->execute();
     $resultado = $stmp->fetchAll();
 
     
 }
-
+// comando para generar un archivo excel con los elemento html que le siguen
 header('Content-type: application/vnd.ms-excel;charset=iso-8859-15');
 header('Content-Disposition: attachment; filename=nombre_archivo.xls');?>
 
@@ -69,13 +71,13 @@ header('Content-Disposition: attachment; filename=nombre_archivo.xls');?>
     <?php foreach($resultado as $row):?>
 
         <tr>
-            <td><?= $row["Id"]?></td>
-            <td><?= $row["Direccion"]?></td>
-            <td><?= $row["Ciudad"]?></td>
-            <td><?= $row["Telefono"]?></td>
-            <td><?= $row["Codigo_Postal"]?></td>
-            <td><?= $row["Tipo"]?></td>
-            <td><?= $row["Precio"]?></td>
+            <td><?= $row["id"]?></td>
+            <td><?= $row["direccion"]?></td>
+            <td><?= $row["ciudad"]?></td>
+            <td><?= $row["telefono"]?></td>
+            <td><?= $row["codigo_Postal"]?></td>
+            <td><?= $row["tipo"]?></td>
+            <td><?= $row["precio"]?></td>
         </tr>
         <?php endforeach?>
 </table>
